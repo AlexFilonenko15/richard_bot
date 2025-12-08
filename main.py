@@ -9,7 +9,7 @@ load_dotenv()
 bot = telebot.TeleBot(os.environ["BOT_TOKEN"])
 
 TG_ID = []
-counter = 2
+counter = 1
 
 
 def mess():
@@ -17,7 +17,7 @@ def mess():
     if TG_ID is not None:
         for id in TG_ID:
             if counter > 0:
-                bot.send_message(id, f'До День Народження Папулькина Залишилося {counter} дня 🎂\nЯ Як Котик Не Можу вже Дочекатися 🥳', parse_mode='html')
+                bot.send_message(id, f'До День Народження Папулькина Залишилося {counter} день 🎂\nЯ Як Котик Не Можу вже Дочекатися 🥳', parse_mode='html')
                 counter -= 1
             elif counter == 0:
                 bot.send_message(id, 'День Народження Папульки настало 🎉🎉🎉\nВсі Вітаємо Нашого Імениника!!!', parse_mode='html')
@@ -35,8 +35,7 @@ def mess():
 def send_message(message):
     global counter
     if counter > 0:
-        bot.send_message(message.chat.id, f'До День Народження Папулькина Залишилося {counter} дня 🎂\nЯ Як Котик Не Можу вже Дочекатися 🥳', parse_mode='html')
-        counter -= 1
+        bot.send_message(message.chat.id, f'Вже зовсім скоро Папине День Народження 🎂\nЯ Як Котик Не Можу вже Дочекатися 🥳', parse_mode='html')
     else:
         bot.send_message(message.chat.id, 'День Народження Папульки настало 🎉🎉🎉\nВсі Вітаємо Нашого Імениника!!!', parse_mode='html')
 
