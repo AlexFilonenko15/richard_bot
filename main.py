@@ -9,7 +9,7 @@ load_dotenv()
 bot = telebot.TeleBot(os.environ["BOT_TOKEN"])
 
 TG_ID = []
-counter = 1
+counter = -1
 
 
 def mess():
@@ -36,8 +36,10 @@ def send_message(message):
     global counter
     if counter > 0:
         bot.send_message(message.chat.id, f'Вже зовсім скоро Папине День Народження 🎂\nЯ Як Котик Не Можу вже Дочекатися 🥳', parse_mode='html')
+    elif counter == 0:
+        bot.send_message(message.chat.id, 'Я так люблю день народження свого Папулькина 🎉🎉🎉\nВсі Вітаємо Нашого Імениника!!!', parse_mode='html')
     else:
-        bot.send_message(message.chat.id, 'День Народження Папульки настало 🎉🎉🎉\nВсі Вітаємо Нашого Імениника!!!', parse_mode='html')
+        bot.send_message(message.chat.id, 'Ми Всі Ще Раз Вітаємо Нашого Папулькина 🎉🎉🎉\nКотик всіх любить!!!', parse_mode='html')
 
 
 @bot.message_handler(commands=['start_weakly_message'])
@@ -63,7 +65,8 @@ def off_message(message):
 
 
 def scheduler():
-    schedule.every(1).minutes.do(mess)
+    schedule.every(1).day.at('00:00').do(mess)
+
 
     while True:
         schedule.run_pending()
